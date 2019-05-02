@@ -1,0 +1,66 @@
+#{extends 'main.html' /}
+#{set title:'Trainer Dashboard' /}
+
+#{menu id:"trainerdashboard"/}
+
+<table class="ui fixed table">
+  <tbody class="centre aligned">
+    <tr>
+      <td class="ui center aligned">
+        <i class="huge user icon"></i> <br/>
+        <b>${member.name}</b>
+      </td>
+      <td class="ui center aligned">
+        <i class="huge ${idealWeightColor} balance scale icon"></i> <br/>
+        <b>${idealWeight}    </b>
+      </td>
+      <td class="ui center aligned">
+        <i class="huge heartbeat icon"></i><font size="+4" class="middle aligned">${memberBMI}</font>
+        <div class="centre aligned">
+        <b>BMI</b>
+        </div>
+      </td>
+      <td class="ui center aligned">
+        <i class="huge doctor icon"></i> <br/>
+        <b>${categoryBMI}</b>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+#{list items:assessmentlist, as:'assessment'}
+<table class="ui raised fixed segment celled table">
+  <thead>
+  <tr>
+    <th>Weight</th>
+    <th>Chest</th>
+    <th>Thigh</th>
+    <th>Upper Arm</th>
+    <th>Waist</th>
+    <th>Hips</th>
+    <th>Comment</th>
+    <th></th>
+  </tr>
+  </thead>
+  <div class="ui bulleted list">
+    <tr>
+      <td> ${assessment.weight} </td>
+      <td> ${assessment.chest} </td>
+      <td> ${assessment.thigh} </td>
+      <td> ${assessment.upperArm} </td>
+      <td> ${assessment.waist} </td>
+      <td> ${assessment.hips} </td>
+      <td> ${assessment.comment} </td>
+    </tr>
+  </div>
+</table>
+<form class="ui form" action="/trainerdashboard/${member.id}/addcomment/${assessment.id}" method="POST">
+  <div class ="field">
+    <label> Comments </label>
+      <input type="text" name="comment">
+  </div>
+  <div>
+      <button class="ui blue submit button"> Update</button>
+  </div>
+</form>
+#{/list}

@@ -1,0 +1,28 @@
+Assessment(a1):
+  weight: 95.50
+  chest:  40
+  thigh: 20
+  upperArm: 52
+  waist: 50
+  hips: 65
+
+
+
+Member(m1):
+  name: homer simpson
+  email: homer@simpson.com
+  gender: Male
+  password: secret
+  address: springfield
+  height: 1.88
+  startingWeight: 100
+
+  assessmentlist:
+  - a1
+
+Trainer(t1):
+  name: marge simpson
+  email: marge@simpson.com
+  gender: Female
+  password: secret
+  address: springfield

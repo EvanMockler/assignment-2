@@ -1,0 +1,92 @@
+#{extends 'main.html' /}
+#{set title:'Dashboard' /}
+
+#{menu id:"dashboard"/}
+
+<table class="ui fixed table">
+  <tbody class="centre aligned">
+    <tr>
+      <td class="ui center aligned">
+        <i class="huge user icon"></i> <br/>
+        <b>${member.name}</b>
+      </td>
+      <td class="ui center aligned">
+        <i class="huge ${idealWeightColor} balance scale icon"></i> <br/>
+        <b>${idealWeight}    </b>
+      </td>
+      <td class="ui center aligned">
+        <i class="huge heartbeat icon"></i><font size="+4" class="middle aligned">${memberBMI}</font>
+        <div class="centre aligned">
+        <b>BMI</b>
+        </div>
+      </td>
+      <td class="ui center aligned">
+        <i class="huge doctor icon"></i> <br/>
+        <b>${categoryBMI}</b>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<form class="ui raised segment equal width form" action="/dashboard/addassessment" method="POST">
+  <div class="fields">
+    <div class="field">
+      <label>Weight</label>
+      <input placeholder="00.00kg" type="text" name="weight">
+    </div>
+    <div class="field">
+      <label>Chest</label>
+      <input placeholder="00.00cm" type="text" name="chest">
+    </div>
+    <div class="field">
+      <label>Thigh</label>
+      <input placeholder="00.00cm" type="text" name="thigh">
+    </div>
+  </div>
+  <div class="fields">
+    <div class="field">
+      <label>Upper Arm</label>
+      <input placeholder="00.00cm" type="text" name="upperArm">
+    </div>
+    <div class="field">
+      <label>Waist</label>
+      <input placeholder="00.00cm" type="text" name="waist">
+    </div>
+    <div class="field">
+      <label>Hips</label>
+      <input placeholder="00.00cm" type="text" name="hips">
+    </div>
+  </div>
+    <button class="ui blue submit button">Add Assessment</button>
+</form>
+
+
+<table class="ui raised fixed segment celled table">
+    <thead>
+    <tr>
+      <th>Weight</th>
+      <th>Chest</th>
+      <th>Thigh</th>
+      <th>Upper Arm</th>
+      <th>Waist</th>
+      <th>Hips</th>
+      <th>Comment</th>
+      <th></th>
+    </tr>
+    </thead>
+    <div class="ui bulleted list">
+      #{list items:assessmentlist, as:'assessment'}
+      <tr>
+        <td> ${assessment.weight} </td>
+        <td> ${assessment.chest} </td>
+        <td> ${assessment.thigh} </td>
+        <td> ${assessment.upperArm} </td>
+        <td> ${assessment.waist} </td>
+        <td> ${assessment.hips} </td>
+        <td> ${comment} </td>
+        <td> <a href="/dashboard/${member.id}/deleteassessment/${assessment.id} "  <button class="ui icon button">
+        <i class="trash icon"></i></button> </a> </td>   
+      #{/list}
+    </div>
+</table>
